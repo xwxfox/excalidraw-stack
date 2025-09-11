@@ -46,6 +46,7 @@ function main() {
   let appHost = "";
   let roomHost = "";
   let storageHost = "";
+  let libraryHost = "";
 
   if (doCustomizeSubs) {
     appHost =
@@ -61,10 +62,16 @@ function main() {
         `Enter STORAGE_BACKEND_HOST subdomain (e.g. excalidraw-storage)`,
         `excalidraw-storage`
       ) + `.${rootDomain}`;
+    libraryHost =
+      ask(
+        `Enter LIBRARY_HOST subdomain (e.g. excalidraw-libraries)`,
+        `excalidraw-libraries`
+      ) + `.${rootDomain}`;
   } else {
     appHost = `excalidraw.${rootDomain}`;
     roomHost = `excalidraw-room.${rootDomain}`;
     storageHost = `excalidraw-storage.${rootDomain}`;
+    libraryHost = `excalidraw-libraries.${rootDomain}`;
   }
 
   let dbUser = "mongodb_user";
@@ -88,8 +95,8 @@ function main() {
     NODE_ENV: "development",
     VITE_APP_BACKEND_V2_GET_URL: `https://${storageHost}/api/v2/scenes/`,
     VITE_APP_BACKEND_V2_POST_URL: `https://${storageHost}/api/v2/scenes/`,
-    VITE_APP_LIBRARY_URL: `https://${storageHost}`,
-    VITE_APP_LIBRARY_BACKEND: `https://${storageHost}/libraries`,
+    VITE_APP_LIBRARY_URL: `https://${libraryHost}`,
+    VITE_APP_LIBRARY_BACKEND: `https://${libraryHost}/libraries`,
     VITE_APP_PLUS_LP: `https://${appHost}`,
     VITE_APP_PLUS_APP: `https://${appHost}`,
     VITE_APP_AI_BACKEND: "https://oss-ai.excalidraw.com",
