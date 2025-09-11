@@ -136,7 +136,7 @@ PQIDAQAB`,
   const domain = parts.slice(-2).join(".");
 
   const LibraryEnv = {
-    CORS_ORIGIN: `https://*.${domain}`,
+    CORS_ORIGIN: `${AppEnv.PUBLIC_URL}`,
   } as Record<string, string>;
 
   doc.services.app.build = doc.services.app.build || {};
