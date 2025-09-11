@@ -1,0 +1,56 @@
+services:
+  app:
+    restart: unless-stopped
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: meow
+    stdin_open: true
+    environment:
+      NODE_ENV: meow
+  storage:
+    build:
+      context: ./storage-backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      STORAGE_URI: meow
+
+  libraries:
+    build:
+      context: ./libraries
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      CORS_ORIGIN: meow
+
+  room:
+    build:
+      context: ./room
+      dockerfile: Dockerfile
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7.0.5-jammy
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: meow
+      MONGO_INITDB_ROOT_PASSWORD: meow
+    volumes:
+      - mongodb-data:/data/db
+
+  mongoexpress:
+    image: mongo-express:latest
+    environment:
+      ME_CONFIG_MONGODB_URL: meow
+      ME_CONFIG_BASICAUTH: true
+      ME_CONFIG_BASICAUTH_USERNAME: meow
+      ME_CONFIG_BASICAUTH_PASSWORD: meow
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+volumes:
+  mongodb-data:
+    name: excalidraw-mongodb-data

@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@excalidraw/prettier-config": "1.0.2",
+    "http-server": "^14.1.0",
+    "node-static": "0.7.11",
+    "prettier": "2.5.1"
+  },
+  "license": "MIT",
+  "prettier": "@excalidraw/prettier-config",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "http-server .",
+    "build": "yarn build:key && yarn format",
+    "build:stats": "python3 stats.py",
+    "build:key": "python3 key.py",
+    "format": "yarn format:prettier && yarn format:python",
+    "format:prettier": "prettier . --write",
+    "format:python": "black .",
+    "validate:libraries": "node ./scripts/validate-libraries.js"
+  }
+}
