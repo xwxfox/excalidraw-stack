@@ -2,11 +2,14 @@
 
 > Selfhostable excalidraw with collaboration, storage, libraries, & more soon ™️
 
+The goal of this project is to allow easy selfhosting of all infrastructure needed for a full-fledged excalidraw experience. - And in the future hopefully even more (Possibly by applying patches / some kind of mixins arch on the original excalidraw project so we dont have to manually make changes for each upstream release)
+
+
 ## What's working?
 
 - Excalidraw (the app itself)
 - Live collaboration
-- Storage + link sharing
+- Storage + link sharing (rewrite from scratch in progress)
 - Libraries
 
 ## What's missing?
